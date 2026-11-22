@@ -1,7 +1,7 @@
 {
-  "name": "domomaker",
+  "name": "project 2",
   "version": "1.0.0",
-  "description": "A Simple Login Example using Node.js, Mongo and Redis",
+  "description": "Game library, tracks hours on a game",
   "main": "./server/app.js",
   "scripts": {
     "webpack": "webpack",
