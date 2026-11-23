@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const GameSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: true,
         trim: true,
@@ -15,7 +15,7 @@ const GameSchema = new mongoose.Schema({
     status: {
         type: String,
         required: true,
-        enum: ['Backlog', 'Dropped', 'Playing', 'Completed'],
+        enum: ['Backlog', 'Playing', 'Completed'],
     },
     rating: {
         type: Number,

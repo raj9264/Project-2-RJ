@@ -4,8 +4,9 @@ const Game = models.Game;
 
 
 const addGame = async (req, res) => {
-    if(!req.body.title || !req.body.age || req.body) {
-        return res.status(400).json({ error: 'error!! (placeholder)' });
+    console.log(req.body);
+    if(!req.body.title || !req.body.status || req.body.hours === undefined) {
+        return res.status(400).json({ error: 'Fill in all fields' });
     }
 
     const gameData = {
@@ -19,22 +20,23 @@ const addGame = async (req, res) => {
     try {
         const newGame = new Game(gameData);
         await newGame.save();
+
         return res.status(201).json({ game: newGame });
     } catch (err) {
         console.log(err);
-            return res.status(400).json({ error: 'error!!! (placeholder)' });
+        return res.status(400).json({ error: 'Could not add game' });
     }
 };
 
 const getGames = async (req, res) => {
     try{
         const query = {owner: req.session.account._id};
-        const games = await Game.find(query).select('name age').lean().exec();
+        const games = await Game.find(query).lean().exec();
 
         return res.json({games});
     } catch (err) {
         console.log(err);
-        return res.status(500).json({error: 'error!!!! (placeholder)'});
+        return res.status(500).json({error: 'Could not retrieve games'});
     }
 };
 

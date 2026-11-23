@@ -3,6 +3,10 @@ const mid = require('./middleware');
 
 const router = (app) => {
 
+    app.get('/maker', mid.requiresLogin, (req, res) => {
+        return res.render('app');
+    });
+
     app.get('/getGames', mid.requiresLogin, controllers.Game.getGames);
     app.post('/addGame', mid.requiresLogin, controllers.Game.addGame);
 
